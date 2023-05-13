@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Push-up",
+    "duration": 30
+  },
+  {
+    "id": 2,
+    "name": "Sit-up",
+    "duration": 45
+  },
+  {
+    "id": 3,
+    "name": "Squat",
+    "duration": 60
+  }
+]

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExerciseListController">
+    <center>
+        <TableView fx:id="exerciseTable" editable="false">
+            <columns>
+                <TableColumn text="Name" prefWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="name"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Sets" prefWidth="75">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="sets"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Reps" prefWidth="75">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="reps"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Weight" prefWidth="75">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="weight"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" >
+            <BorderPane.margin>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </BorderPane.margin>
+            <Button text="Add" onAction="#addExerciseButtonClicked"/>
+            <Button text="Remove" onAction="#removeExerciseButtonClicked"/>
+        </HBox>
+    </bottom>
+</BorderPane>
