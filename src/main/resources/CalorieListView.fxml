@@ -38,12 +38,13 @@
         </TableView>
     </center>
     <bottom>
-        <HBox alignment="CENTER_RIGHT" >
+        <HBox alignment="CENTER" >
             <BorderPane.margin>
                 <Insets bottom="10" left="10" right="10" top="10" />
             </BorderPane.margin>
             <Button text="Add" onAction="#addCalorieButtonClicked"/>
             <Button text="Remove" onAction="#removeCalorieButtonClicked"/>
+            <Button fx:id="backButton" text="Back" onAction="#backButtonClicked"/>
         </HBox>
     </bottom>
 </BorderPane>

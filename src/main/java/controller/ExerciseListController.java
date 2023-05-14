@@ -5,9 +5,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import modell.Exercise;
 import javafx.scene.layout.GridPane;
 import java.io.FileInputStream;
@@ -126,5 +131,12 @@ public class ExerciseListController {
                 exerciseController.removeExercise(selectedExercise);
             }
         }
+    }
+    @FXML
+    private void backButtonClicked(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("menu.fxml"));
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }
