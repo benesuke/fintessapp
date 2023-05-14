@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import modell.Exercise;
 import javafx.scene.layout.GridPane;
 import java.util.Optional;
@@ -19,6 +20,13 @@ public class ExerciseListController {
     @FXML
     private void initialize() {
         exerciseTable.setItems(exerciseController.getExerciseList());
+        // Add a mouse click listener to the table to track the selected row
+        exerciseTable.setOnMouseClicked((MouseEvent event) -> {
+            if (event.getClickCount() > 0) {
+                Exercise selectedExercise = exerciseTable.getSelectionModel().getSelectedItem();
+                exerciseController.setSelectedExercise(selectedExercise);
+            }
+        });
     }
 
     @FXML
@@ -77,11 +85,17 @@ public class ExerciseListController {
 
     @FXML
     private void removeExerciseButtonClicked(ActionEvent event) {
-        // Check if there is at least one exercise in the list
-        if (exerciseController.getExerciseList().size() > 0) {
-            // Remove the first exercise in the list
-            Exercise exerciseToRemove = exerciseController.getExerciseList().get(0);
-            exerciseController.removeExercise(exerciseToRemove);
+        Exercise selectedExercise = exerciseTable.getSelectionModel().getSelectedItem();
+        if (selectedExercise != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Edzés törlése");
+            alert.setHeaderText("Biztosan törölni szeretné ezt az edzést?");
+            alert.setContentText(selectedExercise.getName());
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                exerciseController.removeExercise(selectedExercise);
+            }
         }
     }
 }

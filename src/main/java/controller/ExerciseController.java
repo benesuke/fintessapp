@@ -18,4 +18,7 @@ public class ExerciseController {
     public ObservableList<Exercise> getExerciseList() {
         return exerciseList;
     }
+
+    public void setSelectedExercise(Exercise selectedExercise) {
+    }
 }
