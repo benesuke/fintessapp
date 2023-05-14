@@ -13,6 +13,8 @@ public class Exercise {
         this.weight = weight;
     }
 
+    public Exercise(){};
+
     public String getName() {
         return name;
     }

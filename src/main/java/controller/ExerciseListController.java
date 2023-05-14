@@ -1,5 +1,8 @@
 package controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -7,6 +10,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import modell.Exercise;
 import javafx.scene.layout.GridPane;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 import java.util.Optional;
 
 public class ExerciseListController {
@@ -19,6 +26,7 @@ public class ExerciseListController {
 
     @FXML
     private void initialize() {
+        exerciseController.setExerciseList(FXCollections.observableList(getJson()));
         exerciseTable.setItems(exerciseController.getExerciseList());
         // Add a mouse click listener to the table to track the selected row
         exerciseTable.setOnMouseClicked((MouseEvent event) -> {
@@ -27,6 +35,27 @@ public class ExerciseListController {
                 exerciseController.setSelectedExercise(selectedExercise);
             }
         });
+    }
+
+    private List<Exercise> loadJson(InputStream is){
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Exercise> exercise = objectMapper.readValue(is, new TypeReference<List<Exercise>>() {});
+            return exercise;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return List.of();
+    }
+
+    public List<Exercise> getJson() {
+        try {
+            List<Exercise> Exercise = loadJson(new FileInputStream("exercise.json"));
+            return Exercise;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        throw new IllegalArgumentException();
     }
 
     @FXML

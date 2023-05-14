@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CalorieListController">
+    <center>
+        <TableView fx:id="calorieTable" editable="false">
+            <columns>
+                <TableColumn text="Name" prefWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="name"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Kcal" prefWidth="75">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="kcal"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Fat" prefWidth="75">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="fat"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Carbohydrate" prefWidth="75">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="carbohydrate"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Protein" prefWidth="75">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="protein"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" >
+            <BorderPane.margin>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </BorderPane.margin>
+            <Button text="Add" onAction="#addCalorieButtonClicked"/>
+            <Button text="Remove" onAction="#removeCalorieButtonClicked"/>
+        </HBox>
+    </bottom>
+</BorderPane>

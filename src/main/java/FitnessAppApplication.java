@@ -7,9 +7,9 @@ import javafx.stage.Stage;
 public class FitnessAppApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("ExerciseListView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
         primaryStage.setTitle("Fitness Tracker");
-        primaryStage.setScene(new Scene(root, 400, 400));
+        primaryStage.setScene(new Scene(root, 500, 500));
         primaryStage.show();
     }
 
