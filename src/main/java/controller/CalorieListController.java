@@ -25,6 +25,11 @@ public class CalorieListController {
     @FXML private TableView<Calorie> calorieTable;
     private CalorieController calorieController;
 
+    @FXML private Label totalKcalLabel;
+    @FXML private Label totalFatLabel;
+    @FXML private Label totalCarbohydrateLabel;
+    @FXML private Label totalProteinLabel;
+
     public CalorieListController() {
         calorieController = new CalorieController();
     }
@@ -40,6 +45,26 @@ public class CalorieListController {
                 calorieController.setSelectedCalorie(selectedCalorie);
             }
         });
+        calculateTotals();
+    }
+
+    private void calculateTotals() {
+        int totalKcal = 0;
+        int totalFat = 0;
+        int totalCarbohydrate = 0;
+        int totalProtein = 0;
+
+        for (Calorie calorie : calorieController.getCalorieList()) {
+            totalKcal += calorie.getKcal();
+            totalFat += calorie.getFat();
+            totalCarbohydrate += calorie.getCarbohydrate();
+            totalProtein += calorie.getProtein();
+        }
+
+        totalKcalLabel.setText(String.valueOf(totalKcal));
+        totalFatLabel.setText(String.valueOf(totalFat));
+        totalCarbohydrateLabel.setText(String.valueOf(totalCarbohydrate));
+        totalProteinLabel.setText(String.valueOf(totalProtein));
     }
 
     private List<Calorie> loadJson(InputStream is){
@@ -119,6 +144,7 @@ public class CalorieListController {
 
         result.ifPresent(calorie -> {
             calorieController.addCalorie(calorie);
+            calculateTotals(); // Összesítés frissítése
         });
     }
 
@@ -134,6 +160,7 @@ public class CalorieListController {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
                 calorieController.removeCalorie(selectedCalorie);
+                calculateTotals(); // Összesítés frissítése
             }
         }
     }

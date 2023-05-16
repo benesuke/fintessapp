@@ -7,6 +7,7 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CalorieListController">
     <center>
+        <VBox>
         <TableView fx:id="calorieTable" editable="false">
             <columns>
                 <TableColumn text="Name" prefWidth="200">
@@ -36,6 +37,26 @@
                 </TableColumn>
             </columns>
         </TableView>
+        <HBox spacing="10">
+            <Label text="Total Kcal:"/>
+            <Label fx:id="totalKcalLabel"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <Label text="Total Fat:"/>
+            <Label fx:id="totalFatLabel"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <Label text="Total Carbohydrate:"/>
+            <Label fx:id="totalCarbohydrateLabel"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <Label text="Total Protein:"/>
+            <Label fx:id="totalProteinLabel"/>
+        </HBox>
+    </VBox>
     </center>
     <bottom>
         <HBox alignment="CENTER" >
