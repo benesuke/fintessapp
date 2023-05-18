@@ -35,10 +35,10 @@ public class CalorieListController {
     }
 
     @FXML
-    private void initialize() {
+    private void initialize() { //Inicializáló metódus a felület betöltésekor
         calorieController.setCalorieList(FXCollections.observableList(getJson()));
         calorieTable.setItems(calorieController.getCalorieList());
-        // Add a mouse click listener to the table to track the selected row
+        //Kattintás eseményfigyelő az adattáblán
         calorieTable.setOnMouseClicked((MouseEvent event) -> {
             if (event.getClickCount() > 0) {
                 Calorie selectedCalorie = calorieTable.getSelectionModel().getSelectedItem();
@@ -48,7 +48,7 @@ public class CalorieListController {
         calculateTotals();
     }
 
-    private void calculateTotals() {
+    private void calculateTotals() { //Kalóriák összesítésének kiszámítása és megjelenítése
         int totalKcal = 0;
         int totalFat = 0;
         int totalCarbohydrate = 0;
@@ -67,7 +67,7 @@ public class CalorieListController {
         totalProteinLabel.setText(String.valueOf(totalProtein));
     }
 
-    private List<Calorie> loadJson(InputStream is){
+    private List<Calorie> loadJson(InputStream is){ //JSON fájl betöltése és deszerializálása kalória objektumok listájává
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             List<Calorie> calories = objectMapper.readValue(is, new TypeReference<List<Calorie>>() {});
@@ -78,7 +78,7 @@ public class CalorieListController {
         return List.of();
     }
 
-    public List<Calorie> getJson() {
+    public List<Calorie> getJson() { //JSON fájl betöltése és kalória objektumok listájának lekérése
         try {
             List<Calorie> Calories = loadJson(new FileInputStream("calorie.json"));
             return Calories;
@@ -89,11 +89,10 @@ public class CalorieListController {
     }
 
     @FXML
-    private void addCalorieButtonClicked(ActionEvent event) {
+    private void addCalorieButtonClicked(ActionEvent event) { //Új kalória hozzáadása gomb eseménykezelője
         Dialog<Calorie> dialog = new Dialog<>();
         dialog.setTitle("Új tálálék hozzáadása");
 
-        // Create the username and password labels and fields.
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
@@ -121,13 +120,11 @@ public class CalorieListController {
         grid.add(new Label("Fehérjék mennyisége:"), 0, 4);
         grid.add(proteinField, 1, 4);
 
-        // Set the dialog buttons.
         ButtonType addButton = new ButtonType("Hozzáadás", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);
 
         dialog.getDialogPane().setContent(grid);
 
-        // Convert the result to an Exercise object when the login button is clicked.
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == addButton) {
                 String name = nameField.getText();
@@ -149,7 +146,7 @@ public class CalorieListController {
     }
 
     @FXML
-    private void removeCalorieButtonClicked(ActionEvent event) {
+    private void removeCalorieButtonClicked(ActionEvent event) { //Kalória törlése gomb eseménykezelője
         Calorie selectedCalorie = calorieTable.getSelectionModel().getSelectedItem();
         if (selectedCalorie != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -166,7 +163,7 @@ public class CalorieListController {
     }
 
     @FXML
-    private void backButtonClicked(ActionEvent event) throws IOException {
+    private void backButtonClicked(ActionEvent event) throws IOException { //Vissza gomb eseménykezelője
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("menu.fxml"));
         stage.setScene(new Scene(root));

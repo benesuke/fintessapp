@@ -9,22 +9,22 @@
     <center>
         <TableView fx:id="exerciseTable" editable="false">
             <columns>
-                <TableColumn text="Name" prefWidth="200">
+                <TableColumn text="Gyakorlat neve" prefWidth="200">
                     <cellValueFactory>
                         <PropertyValueFactory property="name"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Sets" prefWidth="75">
+                <TableColumn text="Szett" prefWidth="75">
                     <cellValueFactory>
                         <PropertyValueFactory property="sets"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Reps" prefWidth="75">
+                <TableColumn text="Ismétlés" prefWidth="75">
                     <cellValueFactory>
                         <PropertyValueFactory property="reps"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Weight" prefWidth="75">
+                <TableColumn text="Súly" prefWidth="75">
                     <cellValueFactory>
                         <PropertyValueFactory property="weight"/>
                     </cellValueFactory>
@@ -37,9 +37,9 @@
             <BorderPane.margin>
                 <Insets bottom="10" left="10" right="10" top="10" />
             </BorderPane.margin>
-            <Button text="Add" onAction="#addExerciseButtonClicked"/>
-            <Button text="Remove" onAction="#removeExerciseButtonClicked"/>
-            <Button fx:id="backButton" text="Back" onAction="#backButtonClicked"/>
+            <Button text="Hozzáadás" onAction="#addExerciseButtonClicked"/>
+            <Button text="Elvétel" onAction="#removeExerciseButtonClicked"/>
+            <Button fx:id="backButton" text="Vissza" onAction="#backButtonClicked"/>
         </HBox>
     </bottom>
 </BorderPane>

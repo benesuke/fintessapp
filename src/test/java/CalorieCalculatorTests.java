@@ -17,7 +17,8 @@ public class CalorieCalculatorTests {
 
         // Assert
         Assertions.assertEquals(0, totalCalories);
-    }
+    }//Ez a teszt ellenőrzi, hogy a metódus helyesen kezeli az üres kalória lista esetét.
+    // Az elvárt eredmény az, hogy a metódus visszaadja a 0-t, amikor nincsenek kalóriák a listában.
 
     @Test
     public void testCalculateTotalCalories_SingleCalorie_ReturnsCorrectTotal() {
@@ -32,7 +33,8 @@ public class CalorieCalculatorTests {
 
         // Assert
         Assertions.assertEquals(52, totalCalories);
-    }
+    }//Ez a teszt ellenőrzi, hogy a metódus helyesen számolja ki az összesített kalóriát egyetlen kalória esetén.
+    // A teszt létrehoz egy kalória listát egyetlen kalóriával, majd ellenőrzi, hogy a metódus helyesen adja vissza a kalória értékét.
 
     @Test
     public void testCalculateTotalCalories_MultipleCalories_ReturnsCorrectTotal() {
@@ -48,5 +50,6 @@ public class CalorieCalculatorTests {
 
         // Assert
         Assertions.assertEquals(210, totalCalories);
-    }
+    } //Ez a teszt ellenőrzi, hogy a metódus helyesen számolja ki az összesített kalóriát több kalória esetén.
+    // A teszt létrehoz egy kalória listát több kalóriával, majd ellenőrzi, hogy a metódus helyesen adja vissza az összesített kalóriaértéket.
 }

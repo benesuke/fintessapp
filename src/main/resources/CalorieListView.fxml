@@ -10,7 +10,7 @@
         <VBox>
         <TableView fx:id="calorieTable" editable="false">
             <columns>
-                <TableColumn text="Name" prefWidth="200">
+                <TableColumn text="Táplálék" prefWidth="200">
                     <cellValueFactory>
                         <PropertyValueFactory property="name"/>
                     </cellValueFactory>
@@ -20,17 +20,17 @@
                         <PropertyValueFactory property="kcal"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Fat" prefWidth="75">
+                <TableColumn text="Zsír" prefWidth="75">
                     <cellValueFactory>
                         <PropertyValueFactory property="fat"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Carbohydrate" prefWidth="75">
+                <TableColumn text="Szénhidrát" prefWidth="75">
                     <cellValueFactory>
                         <PropertyValueFactory property="carbohydrate"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Protein" prefWidth="75">
+                <TableColumn text="Fehérje" prefWidth="75">
                     <cellValueFactory>
                         <PropertyValueFactory property="protein"/>
                     </cellValueFactory>
@@ -38,22 +38,22 @@
             </columns>
         </TableView>
         <HBox spacing="10">
-            <Label text="Total Kcal:"/>
+            <Label text="Összes Kcal:"/>
             <Label fx:id="totalKcalLabel"/>
         </HBox>
 
         <HBox spacing="10">
-            <Label text="Total Fat:"/>
+            <Label text="Összes zsír:"/>
             <Label fx:id="totalFatLabel"/>
         </HBox>
 
         <HBox spacing="10">
-            <Label text="Total Carbohydrate:"/>
+            <Label text="Összes szénhidrát:"/>
             <Label fx:id="totalCarbohydrateLabel"/>
         </HBox>
 
         <HBox spacing="10">
-            <Label text="Total Protein:"/>
+            <Label text="Összes fehérje:"/>
             <Label fx:id="totalProteinLabel"/>
         </HBox>
     </VBox>
@@ -63,9 +63,9 @@
             <BorderPane.margin>
                 <Insets bottom="10" left="10" right="10" top="10" />
             </BorderPane.margin>
-            <Button text="Add" onAction="#addCalorieButtonClicked"/>
-            <Button text="Remove" onAction="#removeCalorieButtonClicked"/>
-            <Button fx:id="backButton" text="Back" onAction="#backButtonClicked"/>
+            <Button text="Hozzáadás" onAction="#addCalorieButtonClicked"/>
+            <Button text="Elvétel" onAction="#removeCalorieButtonClicked"/>
+            <Button fx:id="backButton" text="Vissza" onAction="#backButtonClicked"/>
         </HBox>
     </bottom>
 </BorderPane>

@@ -30,10 +30,10 @@ public class ExerciseListController {
     }
 
     @FXML
-    private void initialize() {
+    private void initialize() { //Inicializáló metódus a felület betöltésekor
         exerciseController.setExerciseList(FXCollections.observableList(getJson()));
         exerciseTable.setItems(exerciseController.getExerciseList());
-        // Add a mouse click listener to the table to track the selected row
+        //Kattintás eseményfigyelő az adattáblán
         exerciseTable.setOnMouseClicked((MouseEvent event) -> {
             if (event.getClickCount() > 0) {
                 Exercise selectedExercise = exerciseTable.getSelectionModel().getSelectedItem();
@@ -42,7 +42,7 @@ public class ExerciseListController {
         });
     }
 
-    private List<Exercise> loadJson(InputStream is){
+    private List<Exercise> loadJson(InputStream is){ //JSON fájl betöltése és deszerializálása edzés objektumok listájává
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             List<Exercise> exercise = objectMapper.readValue(is, new TypeReference<List<Exercise>>() {});
@@ -53,7 +53,7 @@ public class ExerciseListController {
         return List.of();
     }
 
-    public List<Exercise> getJson() {
+    public List<Exercise> getJson() { //JSON fájl betöltése és edzés objektumok listájának lekérése
         try {
             List<Exercise> Exercise = loadJson(new FileInputStream("exercise.json"));
             return Exercise;
@@ -64,11 +64,10 @@ public class ExerciseListController {
     }
 
     @FXML
-    private void addExerciseButtonClicked(ActionEvent event) {
+    private void addExerciseButtonClicked(ActionEvent event) { //Gyakorlat hozáadása gomb eseménykezelője
         Dialog<Exercise> dialog = new Dialog<>();
         dialog.setTitle("Új edzés hozzáadása");
 
-        // Create the username and password labels and fields.
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
@@ -92,13 +91,11 @@ public class ExerciseListController {
         grid.add(new Label("Súly nehézsége:"), 0, 3);
         grid.add(weightField, 1, 3);
 
-        // Set the dialog buttons.
         ButtonType addButton = new ButtonType("Hozzáadás", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);
 
         dialog.getDialogPane().setContent(grid);
 
-        // Convert the result to an Exercise object when the login button is clicked.
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == addButton) {
                 String name = nameField.getText();
@@ -118,7 +115,7 @@ public class ExerciseListController {
     }
 
     @FXML
-    private void removeExerciseButtonClicked(ActionEvent event) {
+    private void removeExerciseButtonClicked(ActionEvent event) { //Gyakorlat törlése gomb eseménykezelője
         Exercise selectedExercise = exerciseTable.getSelectionModel().getSelectedItem();
         if (selectedExercise != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -133,7 +130,7 @@ public class ExerciseListController {
         }
     }
     @FXML
-    private void backButtonClicked(ActionEvent event) throws IOException {
+    private void backButtonClicked(ActionEvent event) throws IOException { //Vissza gomb eseménykezelője
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("menu.fxml"));
         stage.setScene(new Scene(root));

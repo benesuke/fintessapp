@@ -11,25 +11,23 @@ import java.io.IOException;
 
 public class MenuController {
     @FXML
-    private void openExerciseList(ActionEvent event) throws IOException {
+    private void openExerciseList(ActionEvent event) throws IOException { // Az Edzések gomb eseménykezelője
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("ExerciseListView.fxml"));
         stage.setScene(new Scene(root));
         stage.show();
     }
     @FXML
-    private void openCalorieCounter(ActionEvent event) throws IOException{
+    private void openCalorieCounter(ActionEvent event) throws IOException{ //// Az Kalóriaszámláló gomb eseménykezelője
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("CalorieListView.fxml"));
         stage.setScene(new Scene(root));
         stage.show();
     }
     @FXML
-    private void closeWindow(ActionEvent event) throws IOException{
+    private void closeWindow(ActionEvent event) throws IOException{ //// Az Kilépés gomb eseménykezelője
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
     }
-
-    // további függvények a másik két gombhoz
 }
